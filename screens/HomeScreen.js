@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native'
+import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 export const HomeScreen = (props) => {
@@ -7,10 +7,12 @@ export const HomeScreen = (props) => {
     const navigation = useNavigation()
 
     const ListItem = ( props ) => (
-        <View style={styles.list}>
-          <Text>{props.category}</Text>
-          <Text>$ {props.amount}</Text>
-        </View>
+        <TouchableOpacity onPress={() => props.clickHandler(props.item)}>
+            <View style={styles.list}>
+                <Text>{props.category}</Text>
+                <Text>$ {props.amount}</Text>
+            </View>
+        </TouchableOpacity>
       )
 
     const renderList = ({ item }) => (
@@ -18,11 +20,13 @@ export const HomeScreen = (props) => {
             id={item.id} 
             amount={item.amount}
             category={item.category}
+            clickHandler={showDetails}
+            item={item}
          />
     )
 
     const showDetails = ( item ) => {
-
+        navigation.navigate('Detail', item ) 
     }
 
     return (
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 20,
         borderBottomWidth: 1,
-        borderBottomColor: 'lightgray',
+        borderBottomColor: '#cccccc',
         flexDirection:'row',
         justifyContent: 'space-between',
 

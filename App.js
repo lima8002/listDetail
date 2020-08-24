@@ -10,7 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
 
-const listData = [
+const Data = [
   {  "amount": 50,  "category": "food",  "id": "1598241633",  "note": "buying lunch"},
   {  "amount": 20,  "category": "transport",  "id": "1598241768",  "note": "catching train"},
   {  "amount": 80,  "category": "groceries",  "id": "1598241782",  "note": "shopping at Coles"},
@@ -22,6 +22,7 @@ const listData = [
   ]
 
 export default function App() {
+  const listData = Data
   return (
     <NavigationContainer>
       <Stack.Navigator>
